@@ -23,7 +23,7 @@ using StringHash32 = BasicHash<std::string, uint32_t>;
 
 void DisplayHash(StringHash32 sh)
 {
-	std::printf("0x%08X\n", sh);
+	std::printf("0x%08X\n", *sh);
 }
 
 int main()

@@ -24,6 +24,9 @@ namespace AutoHashing
 		operator H() const {
 			return mValue;
 		}
+		const H& operator*() const {
+			return mValue;
+		}
 	private:
 		H mValue;
 	};
