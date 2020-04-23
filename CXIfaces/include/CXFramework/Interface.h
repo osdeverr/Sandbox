@@ -9,13 +9,15 @@ namespace CX
 	{
 	private:
 		static char _HandleDummy;
+#ifdef CXCFG_HIDE_IHANDLES
+		friend class Interfaceable;
+	private:
+#else
+	public:
+#endif
 		static constexpr IfaceHandle CXGetIHandle() {
 			return &_HandleDummy;
 		}
-
-#ifdef CXCFG_HIDE_IHANDLES
-		friend class Interfaceable;
-#endif
 	};
 	template<class I>
 	char Interface<I>::_HandleDummy = 0;
