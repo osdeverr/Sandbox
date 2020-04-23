@@ -18,16 +18,10 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\CXFramework\Reflection.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\CXReflRC_Main.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{B8AEB848-9279-4708-926E-AF8AF76B012D}</ProjectGuid>
-    <RootNamespace>CXReflRecreation</RootNamespace>
+    <ProjectGuid>{7F65FCCB-36CD-46C8-8DF5-5782828EFE42}</ProjectGuid>
+    <RootNamespace>AutoHashing</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -147,6 +141,12 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="include\AutoHashing\Hash.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\AutoHashing_Main.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

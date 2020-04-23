@@ -3,12 +3,13 @@
 #include <typeinfo>
 #include <type_traits>
 #include <vector>
+#include <stdexcept>
 
 #define STRINGIFY(x) #x
 #define __TPaste(a, b) a ## b
 #define _TPaste(a, b) __TPaste(a, b)
 #define _GenCXPName(name, line) _TPaste(_CXPropActivator_, line)
-#define cxprop(name) name; CX::Reflection::Property<decltype(name)> _GenCXPName(name, __LINE__) = CX::Reflection::Property<decltype(name)>(*this, &name, STRINGIFY(name))
+#define cxprop(name) name; private: CX::Reflection::Property<decltype(name)> _GenCXPName(name, __LINE__) = CX::Reflection::Property<decltype(name)>(*this, &name, STRINGIFY(name)); public:
 
 namespace CX
 {
@@ -29,15 +30,30 @@ namespace CX
 		public:
 			PVAccessor(IPropValue* pValue) : mpIValue(pValue) {}
 
-			std::string name() { return mpIValue->Name(); }
-			std::string type() { return mpIValue->Type(); }
-			void* data() { return mpIValue->Data(); }
+			operator bool() { return mpIValue != nullptr; }
+
+			std::string name() {
+				if (mpIValue) return mpIValue->Name();
+				else throw std::runtime_error("Trying to access name() of a null PVAccessor");
+			}
+			std::string type() {
+				if (mpIValue) return mpIValue->Type();
+				else throw std::runtime_error("Trying to access type() of a null PVAccessor");
+			}
+			void* data() {
+				if (mpIValue) return mpIValue->Data();
+				else throw std::runtime_error("Trying to access data() of a null PVAccessor");
+			}
 
 			template<typename T>
-			bool is() { return type() == typeid(T).name(); }
+			bool is() {
+				return type() == typeid(T).name();
+			}
 
 			template<typename T>
-			T& as() { return *(T*)data(); }
+			T& as() {
+				return *(T*)data();
+			}
 		private:
 			IPropValue* mpIValue;
 		};
@@ -48,11 +64,13 @@ namespace CX
 			Reflected() {}
 			Reflected(const Reflected&) {}
 
-			IPropValue& operator[](const std::string& name)
+			PVAccessor operator[](const std::string& name)
 			{
 				for (auto& pProp : mProps)
 					if (pProp->Name() == name)
-						return *pProp;
+						return PVAccessor(pProp);
+
+				return PVAccessor(nullptr);
 			}
 
 			std::vector<PVAccessor> properties()

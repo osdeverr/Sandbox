@@ -9,17 +9,17 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="include\CXFramework">
-      <UniqueIdentifier>{06d39ad5-b5aa-465f-a449-6b867e9acd2d}</UniqueIdentifier>
+    <Filter Include="include\AutoHashing">
+      <UniqueIdentifier>{1b5063ed-c520-4e12-9451-ed7bfa1fe339}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\CXFramework\Reflection.h">
-      <Filter>include\CXFramework</Filter>
+    <ClInclude Include="include\AutoHashing\Hash.h">
+      <Filter>include\AutoHashing</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\CXReflRC_Main.cpp">
+    <ClCompile Include="src\AutoHashing_Main.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>

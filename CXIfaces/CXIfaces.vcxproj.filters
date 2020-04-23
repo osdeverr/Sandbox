@@ -22,7 +22,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp">
+    <ClCompile Include="src\CXIfaces_main.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
