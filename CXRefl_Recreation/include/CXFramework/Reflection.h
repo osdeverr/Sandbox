@@ -5,6 +5,8 @@
 #include <vector>
 #include <stdexcept>
 
+#include "Type.h"
+
 #define STRINGIFY(x) #x
 #define __TPaste(a, b) a ## b
 #define _TPaste(a, b) __TPaste(a, b)

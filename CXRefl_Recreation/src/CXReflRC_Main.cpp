@@ -105,6 +105,9 @@ struct RegistrySettings : CX::Reflection::Reflected
 };
 
 int main() {
+	CX::IType&& t = CX::TypeImpl<int>();
+	std::printf("Allocated from t: %p\tTypeName: %s\n", t.Allocate(), t.Name().c_str());
+
 	RegistrySettings s;
 	s.EnableViruses = true;
 	s.HumanPopulation = 7800000000;
@@ -115,7 +118,7 @@ int main() {
 	
 	for (auto& p : s.properties())
 	{
-		std::printf("%s: ", p.name().c_str());
+		std::printf("%s (%s): ", p.name().c_str(), p.type().c_str());
 
 		if (p.is<Registry::Dword>())
 			std::printf("0x%X", p.as<Registry::Dword>());

@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="include\CXFramework\IEnumerable.h" />
     <ClInclude Include="include\CXFramework\Reflection.h" />
+    <ClInclude Include="include\CXFramework\Type.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CXReflRC_Main.cpp" />
