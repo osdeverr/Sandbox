@@ -67,11 +67,13 @@ namespace Registry
 		RegCreateKeyEx(hRootKey, path.c_str(), 0, nullptr, 0, KEY_ALL_ACCESS, nullptr, &hk, nullptr);
 		for (auto& p : val.properties())
 		{
-			std::printf("Read: %s\n", p.name().c_str());
 			if (p.is<String>())
 			{
 				DWORD readSize;
 				RegQueryValueEx(hk, STConvert(p.name()).c_str(), nullptr, nullptr, nullptr, &readSize);
+
+				if (!readSize)
+					continue;
 
 				String s;
 				s.reserve(readSize);
@@ -83,6 +85,10 @@ namespace Registry
 			{
 				size_t expectedSize = p.size();
 				DWORD readSize;
+				RegQueryValueEx(hk, STConvert(p.name()).c_str(), nullptr, nullptr, nullptr, &readSize);
+				if (expectedSize != readSize)
+					continue; // wrong value
+
 				RegQueryValueEx(hk, STConvert(p.name()).c_str(), nullptr, nullptr, (BYTE*)p.data(), &readSize);
 			}
 		}
@@ -105,6 +111,7 @@ int main() {
 	s.PopupCount = 20;
 	s.SkynetNickname = Registry::STConvert("Dz3n");
 	Registry::Read(HKEY_CURRENT_USER, Registry::STConvert("Software\\SkynetCorporation"), s);
+	Registry::Write(HKEY_CURRENT_USER, Registry::STConvert("Software\\SkynetCorporation"), s);
 	
 	for (auto& p : s.properties())
 	{
