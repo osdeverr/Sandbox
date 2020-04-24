@@ -17,6 +17,9 @@
     <ClInclude Include="include\CXFramework\Reflection.h">
       <Filter>include\CXFramework</Filter>
     </ClInclude>
+    <ClInclude Include="include\CXFramework\IEnumerable.h">
+      <Filter>include\CXFramework</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\CXReflRC_Main.cpp">

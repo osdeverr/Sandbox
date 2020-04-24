@@ -146,7 +146,7 @@
     <ClInclude Include="include\CXFramework\Interfaceable.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\CXIfaces_main.cpp" />
+    <ClCompile Include="src\CXIfaces_Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

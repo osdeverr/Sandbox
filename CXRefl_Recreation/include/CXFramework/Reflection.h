@@ -24,6 +24,7 @@ namespace CX
 			virtual std::string Name() = 0;
 			virtual std::string Type() = 0;
 			virtual void* Data() = 0;
+			virtual size_t Size() = 0;
 		};
 		class PVAccessor
 		{
@@ -43,6 +44,17 @@ namespace CX
 			void* data() {
 				if (mpIValue) return mpIValue->Data();
 				else throw std::runtime_error("Trying to access data() of a null PVAccessor");
+			}
+			size_t size() {
+				if (mpIValue) return mpIValue->Size();
+				else throw std::runtime_error("Trying to access size() of a null PVAccessor");
+			}
+
+			template<typename T>
+			T& operator=(const T& val) {
+				static T defval;
+				if (is<T>())
+					return as<T>() = val;
 			}
 
 			template<typename T>
@@ -114,6 +126,10 @@ namespace CX
 			void* Data()
 			{
 				return mpData;
+			}
+			size_t Size()
+			{
+				return sizeof(T);
 			}
 		private:
 			T* mpData;
